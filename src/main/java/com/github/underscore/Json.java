@@ -30,22 +30,24 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings({"java:S3740", "java:S3776"})
+@SuppressWarnings({ "java:S3740", "java:S3776" })
 public final class Json {
+
     private static final int PARSE_MAX_DEPTH = 10_000;
 
-    private Json() {}
+    private Json() {
+    }
 
     private static final String NULL = "null";
+
     private static final String DIGIT = "digit";
 
     public static class JsonStringBuilder {
+
         public enum Step {
-            TWO_SPACES(2),
-            THREE_SPACES(3),
-            FOUR_SPACES(4),
-            COMPACT(0),
-            TABS(1);
+
+            TWO_SPACES(2), THREE_SPACES(3), FOUR_SPACES(4), COMPACT(0), TABS(1);
+
             private final int indent;
 
             Step(int indent) {
@@ -53,12 +55,14 @@ public final class Json {
             }
 
             public int getIndent() {
-                return indent;
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
         }
 
         private final StringBuilder builder;
+
         private final Step identStep;
+
         private int indent;
 
         public JsonStringBuilder(Step identStep) {
@@ -72,279 +76,101 @@ public final class Json {
         }
 
         public JsonStringBuilder append(final char character) {
-            builder.append(character);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public JsonStringBuilder append(final String string) {
-            builder.append(string);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public JsonStringBuilder fillSpaces() {
-            builder.append(
-                    String.valueOf(identStep == Step.TABS ? '\t' : ' ')
-                            .repeat(Math.max(0, indent)));
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public JsonStringBuilder incIndent() {
-            indent += identStep.getIndent();
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public JsonStringBuilder decIndent() {
-            indent -= identStep.getIndent();
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public JsonStringBuilder newLine() {
-            if (identStep != Step.COMPACT) {
-                builder.append('\n');
-            }
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public Step getIdentStep() {
-            return identStep;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public String toString() {
-            return builder.toString();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class JsonArray {
-        private JsonArray() {}
+
+        private JsonArray() {
+        }
 
         public static void writeJson(Collection collection, JsonStringBuilder builder) {
-            if (collection == null) {
-                builder.append(NULL);
-                return;
-            }
-            Iterator iter = collection.iterator();
-            builder.append('[').incIndent();
-            if (!collection.isEmpty()) {
-                builder.newLine();
-            }
-            while (iter.hasNext()) {
-                Object value = iter.next();
-                builder.fillSpaces();
-                JsonValue.writeJson(value, builder);
-                if (iter.hasNext()) {
-                    builder.append(',').newLine();
-                }
-            }
-            builder.newLine().decIndent().fillSpaces().append(']');
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(byte[] byteArray, JsonStringBuilder builder) {
-            if (byteArray == null) {
-                builder.append(NULL);
-            } else if (byteArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').incIndent().newLine();
-                builder.fillSpaces().append(String.valueOf(byteArray[0]));
-                for (int i = 1; i < byteArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    builder.append(String.valueOf(byteArray[i]));
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(short[] shortArray, JsonStringBuilder builder) {
-            if (shortArray == null) {
-                builder.append(NULL);
-            } else if (shortArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').incIndent().newLine();
-                builder.fillSpaces().append(String.valueOf(shortArray[0]));
-                for (int i = 1; i < shortArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    builder.append(String.valueOf(shortArray[i]));
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(int[] intArray, JsonStringBuilder builder) {
-            if (intArray == null) {
-                builder.append(NULL);
-            } else if (intArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').incIndent().newLine();
-                builder.fillSpaces().append(String.valueOf(intArray[0]));
-                for (int i = 1; i < intArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    builder.append(String.valueOf(intArray[i]));
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(long[] longArray, JsonStringBuilder builder) {
-            if (longArray == null) {
-                builder.append(NULL);
-            } else if (longArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').incIndent().newLine();
-                builder.fillSpaces().append(String.valueOf(longArray[0]));
-                for (int i = 1; i < longArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    builder.append(String.valueOf(longArray[i]));
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(float[] floatArray, JsonStringBuilder builder) {
-            if (floatArray == null) {
-                builder.append(NULL);
-            } else if (floatArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').incIndent().newLine();
-                builder.fillSpaces().append(String.valueOf(floatArray[0]));
-                for (int i = 1; i < floatArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    builder.append(String.valueOf(floatArray[i]));
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(double[] doubleArray, JsonStringBuilder builder) {
-            if (doubleArray == null) {
-                builder.append(NULL);
-            } else if (doubleArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').incIndent().newLine();
-                builder.fillSpaces().append(String.valueOf(doubleArray[0]));
-                for (int i = 1; i < doubleArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    builder.append(String.valueOf(doubleArray[i]));
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(boolean[] booleanArray, JsonStringBuilder builder) {
-            if (booleanArray == null) {
-                builder.append(NULL);
-            } else if (booleanArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').incIndent().newLine();
-                builder.fillSpaces().append(String.valueOf(booleanArray[0]));
-                for (int i = 1; i < booleanArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    builder.append(String.valueOf(booleanArray[i]));
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(char[] charArray, JsonStringBuilder builder) {
-            if (charArray == null) {
-                builder.append(NULL);
-            } else if (charArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').incIndent().newLine();
-                builder.fillSpaces().append('\"').append(String.valueOf(charArray[0])).append('\"');
-                for (int i = 1; i < charArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    builder.append('"').append(String.valueOf(charArray[i])).append('"');
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public static void writeJson(Object[] objectArray, JsonStringBuilder builder) {
-            if (objectArray == null) {
-                builder.append(NULL);
-            } else if (objectArray.length == 0) {
-                builder.append("[]");
-            } else {
-                builder.append('[').newLine().incIndent().fillSpaces();
-                JsonValue.writeJson(objectArray[0], builder);
-                for (int i = 1; i < objectArray.length; i++) {
-                    builder.append(',').newLine().fillSpaces();
-                    JsonValue.writeJson(objectArray[i], builder);
-                }
-                builder.newLine().decIndent().fillSpaces().append(']');
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class JsonObject {
-        private JsonObject() {}
+
+        private JsonObject() {
+        }
 
         public static void writeJson(Map map, JsonStringBuilder builder) {
-            if (map == null) {
-                builder.append(NULL);
-                return;
-            }
-            Iterator iter = map.entrySet().iterator();
-            builder.append('{').incIndent();
-            if (!map.isEmpty()) {
-                builder.newLine();
-            }
-            while (iter.hasNext()) {
-                Map.Entry entry = (Map.Entry) iter.next();
-                builder.fillSpaces().append('"');
-                builder.append(JsonValue.escape(String.valueOf(entry.getKey())));
-                builder.append('"');
-                builder.append(':');
-                if (builder.getIdentStep() != JsonStringBuilder.Step.COMPACT) {
-                    builder.append(' ');
-                }
-                JsonValue.writeJson(entry.getValue(), builder);
-                if (iter.hasNext()) {
-                    builder.append(',').newLine();
-                }
-            }
-            builder.newLine().decIndent().fillSpaces().append('}');
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class JsonValue {
-        private JsonValue() {}
+
+        private JsonValue() {
+        }
 
         public static void writeJson(Object value, JsonStringBuilder builder) {
-            if (value == null) {
-                builder.append(NULL);
-            } else if (value instanceof String) {
-                builder.append('"').append(escape((String) value)).append('"');
-            } else if (value instanceof Double) {
-                if (((Double) value).isInfinite() || ((Double) value).isNaN()) {
-                    builder.append(NULL);
-                } else {
-                    builder.append(value.toString());
-                }
-            } else if (value instanceof Float) {
-                if (((Float) value).isInfinite() || ((Float) value).isNaN()) {
-                    builder.append(NULL);
-                } else {
-                    builder.append(value.toString());
-                }
-            } else if (value instanceof Number) {
-                builder.append(value.toString());
-            } else if (value instanceof Boolean) {
-                builder.append(value.toString());
-            } else if (value instanceof Map) {
-                JsonObject.writeJson((Map) value, builder);
-            } else if (value instanceof Collection) {
-                JsonArray.writeJson((Collection) value, builder);
-            } else {
-                doWriteJson(value, builder);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private static void doWriteJson(Object value, JsonStringBuilder builder) {
@@ -372,19 +198,14 @@ public final class Json {
         }
 
         public static String escape(String inputString) {
-            if (inputString == null) {
-                return null;
-            }
-            StringBuilder sb = new StringBuilder();
-            escape(inputString, sb);
-            return sb.toString();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private static void escape(String inputString, StringBuilder sb) {
             final int len = inputString.length();
             for (int i = 0; i < len; i++) {
                 char ch = inputString.charAt(i);
-                switch (ch) {
+                switch(ch) {
                     case '"':
                         sb.append("\\\"");
                         break;
@@ -410,9 +231,7 @@ public final class Json {
                         sb.append('€');
                         break;
                     default:
-                        if (ch <= '\u001F'
-                                || ch >= '\u007F' && ch <= '\u009F'
-                                || ch >= '\u2000' && ch <= '\u20FF') {
+                        if (ch <= '\u001F' || ch >= '\u007F' && ch <= '\u009F' || ch >= '\u2000' && ch <= '\u20FF') {
                             String ss = Integer.toHexString(ch);
                             sb.append("\\u");
                             sb.append("0".repeat(4 - ss.length()));
@@ -427,8 +246,11 @@ public final class Json {
     }
 
     public static class ParseException extends RuntimeException {
+
         private final int offset;
+
         private final int line;
+
         private final int column;
 
         public ParseException(String message, int offset, int line, int column) {
@@ -439,26 +261,34 @@ public final class Json {
         }
 
         public int getOffset() {
-            return offset;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public int getLine() {
-            return line;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public int getColumn() {
-            return column;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class JsonParser {
+
         private final String json;
+
         private int index;
+
         private int line;
+
         private int lineOffset;
+
         private int current;
+
         private final StringBuilder captureBuffer = new StringBuilder();
+
         private int captureStart;
+
         private final int maxDepth;
 
         public JsonParser(String string, int maxDepth) {
@@ -469,21 +299,14 @@ public final class Json {
         }
 
         public Object parse() {
-            read();
-            skipWhiteSpace();
-            final Object result = readValue(0);
-            skipWhiteSpace();
-            if (!isEndOfText()) {
-                throw error("Unexpected character");
-            }
-            return result;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private Object readValue(int depth) {
             if (depth > maxDepth) {
                 throw error("Maximum depth exceeded");
             }
-            switch (current) {
+            switch(current) {
                 case 'n':
                     return readNull();
                 case 't':
@@ -614,7 +437,7 @@ public final class Json {
 
         private void readEscape() {
             read();
-            switch (current) {
+            switch(current) {
                 case '"':
                 case '/':
                 case '\\':
@@ -648,12 +471,7 @@ public final class Json {
                     if (isHexCharsDigits) {
                         captureBuffer.append((char) Integer.parseInt(new String(hexChars), 16));
                     } else {
-                        captureBuffer
-                                .append("\\u")
-                                .append(hexChars[0])
-                                .append(hexChars[1])
-                                .append(hexChars[2])
-                                .append(hexChars[3]);
+                        captureBuffer.append("\\u").append(hexChars[0]).append(hexChars[1]).append(hexChars[2]).append(hexChars[3]);
                     }
                     break;
                 default:
@@ -679,9 +497,7 @@ public final class Json {
             final String number = endCapture();
             final Number result;
             if (number.contains(".") || number.contains("e") || number.contains("E")) {
-                if (number.length() > 9
-                        || (number.contains(".") && number.length() - number.lastIndexOf('.') > 2)
-                                && number.charAt(number.length() - 1) == '0') {
+                if (number.length() > 9 || (number.contains(".") && number.length() - number.lastIndexOf('.') > 2) && number.charAt(number.length() - 1) == '0') {
                     result = new java.math.BigDecimal(number);
                 } else {
                     result = Double.valueOf(number);
@@ -803,9 +619,7 @@ public final class Json {
         }
 
         private boolean isHexDigit() {
-            return isDigit()
-                    || current >= 'a' && current <= 'f'
-                    || current >= 'A' && current <= 'F';
+            return isDigit() || current >= 'a' && current <= 'f' || current >= 'A' && current <= 'F';
         }
 
         private boolean isEndOfText() {
@@ -814,42 +628,34 @@ public final class Json {
     }
 
     public static String toJson(Collection collection, JsonStringBuilder.Step identStep) {
-        final JsonStringBuilder builder = new JsonStringBuilder(identStep);
-        JsonArray.writeJson(collection, builder);
-        return builder.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static String toJson(Collection collection) {
-        return toJson(collection, JsonStringBuilder.Step.TWO_SPACES);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static String toJson(Map map, JsonStringBuilder.Step identStep) {
-        final JsonStringBuilder builder = new JsonStringBuilder(identStep);
-        JsonObject.writeJson(map, builder);
-        return builder.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static String toJson(Map map) {
-        return toJson(map, JsonStringBuilder.Step.TWO_SPACES);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static Object fromJson(String string) {
-        return fromJson(string, PARSE_MAX_DEPTH);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static Object fromJson(String string, int maxDepth) {
-        return new JsonParser(string, maxDepth).parse();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static String formatJson(String json, JsonStringBuilder.Step identStep) {
-        Object result = fromJson(json);
-        if (result instanceof Map) {
-            return toJson((Map) result, identStep);
-        }
-        return toJson((List) result, identStep);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static String formatJson(String json) {
-        return formatJson(json, JsonStringBuilder.Step.TWO_SPACES);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

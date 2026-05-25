@@ -27,10 +27,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class Base32 {
+
     private static final Base32 INSTANCE = new Base32();
+
     private final char[] digits = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef".toCharArray();
+
     private final int mask = digits.length - 1;
+
     private final int shift = Integer.numberOfTrailingZeros(digits.length);
+
     private final Map<Character, Integer> charMap = new HashMap<>();
 
     private Base32() {
@@ -40,7 +45,7 @@ public final class Base32 {
     }
 
     public static String decode(final String encoded) {
-        return new String(INSTANCE.decodeInternal(encoded));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private byte[] decodeInternal(final String encoded) {
@@ -69,7 +74,7 @@ public final class Base32 {
     }
 
     public static String encode(final String data) {
-        return INSTANCE.encodeInternal(data.getBytes());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private String encodeInternal(final byte[] data) {
@@ -101,6 +106,7 @@ public final class Base32 {
     }
 
     public static class DecodingException extends RuntimeException {
+
         public DecodingException(final String message) {
             super(message);
         }

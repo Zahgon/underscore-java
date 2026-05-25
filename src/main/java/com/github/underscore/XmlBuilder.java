@@ -29,10 +29,15 @@ import java.util.List;
 import java.util.Map;
 
 public class XmlBuilder {
+
     private static final String SELF_CLOSING = "-self-closing";
+
     private static final String TRUE = "true";
+
     private final Map<String, Object> data;
+
     private String path;
+
     private String savedPath;
 
     XmlBuilder(String rootName) {
@@ -44,143 +49,96 @@ public class XmlBuilder {
     }
 
     public static XmlBuilder create(String rootName) {
-        return new XmlBuilder(rootName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static XmlBuilder parse(String xml) {
-        Map<String, Object> xmlData = U.fromXmlMap(xml);
-        XmlBuilder xmlBuilder = new XmlBuilder(Xml.XmlValue.getMapKey(xmlData));
-        xmlBuilder.setData(xmlData);
-        return xmlBuilder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("unchecked")
     public XmlBuilder e(String elementName) {
-        U.remove(data, path + "." + SELF_CLOSING);
-        Map<String, Object> value = new LinkedHashMap<>();
-        value.put(SELF_CLOSING, TRUE);
-        Object object = U.get(data, path + "." + elementName);
-        if (object instanceof Map) {
-            List<Object> list = new ArrayList<>();
-            list.add(object);
-            list.add(value);
-            U.set(data, path + "." + elementName, list);
-            path += "." + elementName + ".1";
-            savedPath = path;
-        } else if (object instanceof List) {
-            path += "." + elementName + "." + ((List<Object>) object).size();
-            savedPath = path;
-            ((List<Object>) object).add(value);
-        } else {
-            U.set(data, path + "." + elementName, value);
-            path += "." + elementName;
-        }
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder a(String attributeName, String value) {
-        U.remove(data, path + "." + SELF_CLOSING);
-        U.set(data, path + ".-" + attributeName, value);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder c(String comment) {
-        U.remove(data, path + "." + SELF_CLOSING);
-        U.update(data, path + ".#comment", comment);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder i(String target, String value) {
-        U.remove(data, path + "." + SELF_CLOSING);
-        U.set(data, "?" + target, value);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder d(String cdata) {
-        U.remove(data, path + "." + SELF_CLOSING);
-        U.update(data, path + ".#cdata-section", cdata);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder t(String text) {
-        U.remove(data, path + "." + SELF_CLOSING);
-        U.update(data, path + ".#text", text);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder importXmlBuilder(XmlBuilder xmlBuilder) {
-        data.putAll(xmlBuilder.data);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder up() {
-        if (path.equals(savedPath)) {
-            path = path.substring(0, path.lastIndexOf("."));
-        }
-        path = path.substring(0, path.lastIndexOf("."));
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder root() {
-        int index = path.indexOf(".");
-        XmlBuilder xmlBuilder = new XmlBuilder(index == -1 ? path : path.substring(0, index));
-        xmlBuilder.setData(data);
-        return xmlBuilder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public org.w3c.dom.Document getDocument() {
-        try {
-            return Xml.Document.createDocument(asString());
-        } catch (Exception ex) {
-            throw new IllegalArgumentException(ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder set(final String path, final Object value) {
-        U.set(data, path, value);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder remove(final String key) {
-        U.remove(data, key);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Map<String, Object> build() {
-        return U.deepCopyMap(data);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public XmlBuilder clear() {
-        data.clear();
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean isEmpty() {
-        return data.isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public int size() {
-        return data.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String asString() {
-        return U.toXml(data);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String toXml(Xml.XmlStringBuilder.Step identStep) {
-        return Xml.toXml(data, identStep);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String toXml() {
-        return U.toXml(data);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String toJson(Json.JsonStringBuilder.Step identStep) {
-        return Json.toJson(data, identStep);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String toJson() {
-        return U.toJson(data);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void setData(Map<String, Object> newData) {
